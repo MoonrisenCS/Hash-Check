@@ -2,7 +2,7 @@
 ### A command-line integrity checker for files, written in Python.
 
 ## About
-HashCheck is a personal Python learning project that generates file hashes and verifies file integrity using SHA-256 and MD%. It uses JSON to store hash records and associates unlock keys with those records for verification
+HashCheck is a personal Python learning project that generates file hashes and verifies file integrity using SHA-256 and MD5. It uses JSON to store hash records and associates unlock keys with those records for verification
 
 The project was created to practise my understanding of Python, whils't integrating modules i haven't used before, that i will need to be familiar with when i go into work. The modules that I familiarised myself with for this project were: File Handling with pathlib, Hashing with hashlib and creating a CMI using argsparce
 
