@@ -13,11 +13,6 @@ def file_exists(path: Path) -> bool:
     # END IF
 # END FUNCTION
 
-def write_hash(file: Path, text: str):
-    with file.open("a") as f:
-        f.write(f"{text}\n")
-    # CLOSE FILE
-
 def generate_hash(path: Path, hash: str) -> str:
     global hash_list
 
