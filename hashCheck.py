@@ -19,7 +19,7 @@ def generate_hash(path: Path, hash: str) -> str:
     if not file_exists(hash_list):
         hash_list = Path("./hashList.json")
         hash_list.write_text("")
-        return generate_hash(path=hash_list, hash=hash)
+        
 
     if file_exists(path):
 
