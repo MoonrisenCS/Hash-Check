@@ -16,6 +16,11 @@ def file_exists(path: Path) -> bool:
 def generate_hash(path: Path, hash: str) -> str:
     global hash_list
 
+    if not file_exists(hash_list):
+        hash_list = Path("./hashList.json")
+        hash_list.write_text("")
+        return generate_hash(path=hash_list, hash=hash)
+
     if file_exists(path):
 
         if hash == "sha256":
@@ -43,9 +48,8 @@ def generate_hash(path: Path, hash: str) -> str:
         # END IF
 
     else:
-        hash_list = Path("hashList.json")
-        hash_list.write_text("")
-        return generate_hash(path=hash_list, hash=hash)
+       print("File does not exist.")
+       sys.exit()
     # END IF
 # END FUNCTION
 
@@ -72,9 +76,6 @@ def verify_hash(file_path: Path, hash_algorithm: str, hash_list: Path, key: str)
         print("Verification key or Hash Algorithm invalid")
         sys.exit()
 
-
-
-
 def main(hash_file: Path):
     parser = argparse.ArgumentParser(description="Custom CLI for Generating and Verifying SHA256 file hashes") # Create the top-level parser
 
@@ -83,8 +84,6 @@ def main(hash_file: Path):
     gen_parser = subparsers.add_parser("generate", help="Generate a files SHA256 or MD5 hash value.", ) # Add 'generate' subcommand
     gen_parser.add_argument("file", help="Path to the file you wish to generate a hash for.")
     gen_parser.add_argument("-a", "--algo", choices=["md5", "sha256"], default = "sha256", help="Hashing Algorithms")
-
-    # VERIFY LATER
 
     ver_parser = subparsers.add_parser("verify", help="Verify a files hash value") # Add 'verify' subcommand
     ver_parser.add_argument("file", help="Path to the file you wish to verify a hash for.")
